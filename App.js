@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import StackNavigator from "./navigators/StackNavigator";
 import { Provider } from "react-redux";
 import store from "./store";

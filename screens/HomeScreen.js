@@ -3,8 +3,8 @@ import { View, Text } from "react-native";
 
 const HomeScreen = props => {
   return (
-    <View>
-      <Text>hihihihihi</Text>
+    <View style={{ flex: 1 }}>
+      <Text>hihihihihiaa</Text>
     </View>
   );
 };
