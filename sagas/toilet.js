@@ -46,10 +46,10 @@ function postReviewAPI(data) {
 
 function* postReview(action) {
   try {
-    // const Toilets = yield call(postReviewAPI, action.data);
+    const Toilets = yield call(postReviewAPI, action.data);
     yield put({
       type: POST_REVIEW_SUCCESS,
-      // data: Toilets.data.restrooms
+      data: Toilets.data.restrooms
     });
   } catch (e) {
     console.error(e);
@@ -65,5 +65,5 @@ function* watchPostReview() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchGetToilets)]);
+  yield all([fork(watchGetToilets), fork(watchPostReview)]);
 }

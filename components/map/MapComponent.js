@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import MapView from "react-native-maps";
 import {
   GET_TOILETS_REQUEST,
-  SET_CURRENT_TOILET
+  SET_CURRENT_TOILET,
+  CLEAN_UP_POSTING_SUCCESS
 } from "../../reducers/toilet/actions";
 import { SET_CURRENT_LOCATION } from "../../reducers/user/actions";
 import MarkerComponent from "./MarkerComponent";
@@ -12,8 +13,23 @@ import Toilet from "./Toilet";
 
 const MapComponent = props => {
   const dispatch = useDispatch();
-  const { toilet, toilets } = useSelector(state => state.toilet);
+  const { toilet, toilets, isPostingSuccess } = useSelector(
+    state => state.toilet
+  );
   const { location } = useSelector(state => state.user);
+
+  //clean up isPostReviewSuccess
+  useEffect(() => {
+    if (isPostingSuccess) {
+      dispatch({
+        type: GET_TOILETS_REQUEST,
+        data: location
+      });
+      dispatch({
+        type: CLEAN_UP_POSTING_SUCCESS
+      });
+    }
+  }, [isPostingSuccess]);
 
   useEffect(() => {
     if (location) {

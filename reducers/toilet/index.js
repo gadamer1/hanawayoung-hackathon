@@ -2,14 +2,20 @@ import {
   GET_TOILETS_REQUEST,
   GET_TOILETS_SUCCESS,
   GET_TOILETS_FAILURE,
-  SET_CURRENT_TOILET
+  SET_CURRENT_TOILET,
+  POST_REVIEW_REQUEST,
+  POST_REVIEW_SUCCESS,
+  POST_REVIEW_FAILURE,
+  CLEAN_UP_POSTING_SUCCESS
 } from "./actions";
 
 const initialState = {
   toilets: null,
   isGetToilets: false,
   error: null,
-  toilet: null
+  toilet: null,
+  isPosting: false,
+  isPostingSuccess: false
 };
 
 const mocks = [
@@ -55,6 +61,35 @@ export default tolietReducer = (state = initialState, action) => {
       return {
         ...state,
         toilet: action.data
+      };
+    }
+
+    case POST_REVIEW_REQUEST: {
+      return {
+        ...state,
+        isPosting: true,
+        isPostingSuccess: false
+      };
+    }
+    case POST_REVIEW_SUCCESS: {
+      return {
+        ...state,
+        isPosting: false,
+        isPostingSuccess: true
+      };
+    }
+    case POST_REVIEW_FAILURE: {
+      return {
+        ...state,
+        isPosting: false,
+        isPostingSuccess: false
+      };
+    }
+
+    case CLEAN_UP_POSTING_SUCCESS: {
+      return {
+        ...state,
+        isPostingSuccess: false
       };
     }
 

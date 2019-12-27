@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-native-elements";
 import {
   View,
-  Button,
   Text,
-  StyleSheet,
   TextInput,
+  StyleSheet,
   ToolbarAndroidComponent,
   Image
 } from "react-native";
@@ -13,7 +13,9 @@ import { LOGIN_REQUEST } from "../../reducers/user/actions";
 import { SIGN_UP_REQUEST } from "../../reducers/user/actions";
 
 export default function App(props) {
-  const { isLoginSuccess } = useSelector(state => state.user);
+  const { isLoginSuccess, isLoging, isLoginFailure } = useSelector(
+    state => state.user
+  );
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,9 +23,15 @@ export default function App(props) {
 
   useEffect(() => {
     if (isLoginSuccess) {
-      props.navi.navigation.navigate("Map");
+      props.navi.navigation.replace("Map");
     }
   }, [isLoginSuccess]);
+
+  useEffect(() => {
+    if (isLoginFailure) {
+      alert("로그인 실패");
+    }
+  }, [isLoginFailure]);
 
   const _onPressLoginButton = () => {
     if (id.trim() !== "" && password.trim() !== "") {
@@ -34,15 +42,16 @@ export default function App(props) {
           password
         }
       });
+    } else {
+      alert("로그인 정보를 입력해주세요");
     }
-    alert("login pressed!");
   };
 
-  const _onChangeId = text => {
-    setId(text);
+  const _onChangeId = e => {
+    setId(e.nativeEvent.text);
   };
-  const _onChangePassword = text => {
-    setPassword(text);
+  const _onChangePassword = e => {
+    setPassword(e.nativeEvent.text);
   };
 
   const _onPressSignUpButton = () => {
@@ -72,6 +81,7 @@ export default function App(props) {
         style={styles.loginButton}
         onPress={_onPressLoginButton}
         title="Login"
+        loading={isLoging}
       ></Button>
       <Button
         value="NORMAL RAISED"
