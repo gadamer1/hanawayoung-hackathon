@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, AsyncStorage } from "react-redux";
 import { Button } from "react-native-elements";
 import {
   View,
@@ -13,7 +13,7 @@ import { LOGIN_REQUEST } from "../../reducers/user/actions";
 import { SIGN_UP_REQUEST } from "../../reducers/user/actions";
 
 export default function App(props) {
-  const { isLoginSuccess, isLoging, isLoginFailure } = useSelector(
+  const { isLoginSuccess, isLoging, isLoginFailure, user } = useSelector(
     state => state.user
   );
   const [id, setId] = useState("");
@@ -23,6 +23,13 @@ export default function App(props) {
 
   useEffect(() => {
     if (isLoginSuccess) {
+      const setUser = async () => {
+        try {
+          await AsyncStorage.setItem("user", user);
+        } catch (e) {
+          console.error(e);
+        }
+      };
       props.navi.navigation.replace("Map");
     }
   }, [isLoginSuccess]);

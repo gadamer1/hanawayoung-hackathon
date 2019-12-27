@@ -13,7 +13,7 @@ const SignUpScreen = props => {
 
   useEffect(() => {
     if (isSignUpSuccess) {
-      props.navigation.navigate("Map");
+      props.navigation.replace("Map");
     }
   }, [isSignUpSuccess]);
 
