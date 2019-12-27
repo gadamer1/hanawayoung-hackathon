@@ -1,9 +1,11 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "../screens/HomeScreen";
+import MapScreen from "../screens/MapScreen";
+import ToiletDetailScreen from "../screens/ToiletDetailScreen";
 
 const StackNavigator = createStackNavigator({
-  home: HomeScreen
+  Map: MapScreen,
+  ToiletDetail: ToiletDetailScreen
 });
 
 export default createAppContainer(StackNavigator);

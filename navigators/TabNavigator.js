@@ -3,9 +3,12 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
+import MapScreen from "../screens/MapScreen";
+import StackNavigator from "../navigators/StackNavigator";
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Map: StackNavigator,
     Home: HomeScreen
   },
   {
@@ -18,7 +21,7 @@ const TabNavigator = createBottomTabNavigator(
           iconName = `ios-information-circle${focused ? "" : "-outline"}`;
           // Sometimes we want to add badges to some icons.
           // You can check the implementation below
-        } else if (routeName === "Settings") {
+        } else if (routeName === "Map") {
           iconName = `ios-options`;
         }
 
