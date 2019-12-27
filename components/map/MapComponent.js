@@ -12,7 +12,7 @@ import Toilet from "./Toilet";
 
 const MapComponent = props => {
   const dispatch = useDispatch();
-  const { toilet } = useSelector(state => state.toilet);
+  const { toilet, toilets } = useSelector(state => state.toilet);
   const { location } = useSelector(state => state.user);
 
   useEffect(() => {
@@ -45,8 +45,8 @@ const MapComponent = props => {
         initialRegion={{
           latitude: location.latitude,
           longitude: location.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
         }}
         onRegionChange={_onChangeRegion}
         showsUserLocation

@@ -26,8 +26,8 @@ const MarkerComponent = props => {
                 _onPressMarker(v);
               }}
               coordinate={{
-                longitude: v.location[1],
-                latitude: v.location[0]
+                longitude: v.location[0],
+                latitude: v.location[1]
               }}
             />
           );

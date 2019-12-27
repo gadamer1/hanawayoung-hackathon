@@ -4,11 +4,14 @@ import axios from "axios";
 import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  LOGIN_REQUEST
+  LOGIN_REQUEST,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE
 } from "../reducers/user/actions";
 
 function loginAPI(data) {
-  // return axio.put('/user',{data})
+  return axios.put("/auth/login", { data });
 }
 
 function* login(action) {
@@ -29,6 +32,30 @@ function* login(action) {
 
 function* watchLogin() {
   yield takeLatest(LOGIN_REQUEST, login);
+}
+
+function signUpAPI(data) {
+  return axios.post("/auth/register", data);
+}
+
+function* signUp(action) {
+  try {
+    const User = yield call(signUpAPI, action.data);
+    yield put({
+      type: SIGN_UP_SUCCESS, // put == dispatch
+      data: User
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: SIGN_UP_FAILURE,
+      error: e
+    });
+  }
+}
+
+function* watchSignUp() {
+  yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 
 export default function* userSaga() {
