@@ -14,7 +14,9 @@ const initialState = {
   location: null,
   isLoging: false,
   isSignUping: false,
-  isLoginSuccess: false
+  isLoginSuccess: false,
+  isLoginFailure: null,
+  isSignUpSuccess: false
 };
 
 export default userReducer = (state = initialState, action) => {
@@ -31,7 +33,8 @@ export default userReducer = (state = initialState, action) => {
         ...state,
         user: action.data,
         isLoging: false,
-        isLoginSuccess: true
+        isLoginSuccess: action.data.success,
+        isLoginFailure: !action.data.success
       };
     }
 
@@ -51,15 +54,16 @@ export default userReducer = (state = initialState, action) => {
       };
     }
 
-    case LOGIN_SUCCESS: {
+    case SIGN_UP_SUCCESS: {
       return {
         ...state,
         user: action.data,
-        isSignUping: false
+        isSignUping: false,
+        isSignUpSuccess: true
       };
     }
 
-    case LOGIN_FAILURE: {
+    case SIGN_UP_FAILURE: {
       return {
         ...state,
         isSignUping: false,

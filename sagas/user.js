@@ -11,7 +11,7 @@ import {
 } from "../reducers/user/actions";
 
 function loginAPI(data) {
-  return axios.put("/auth/login", { data });
+  return axios.post("/auth/login", data);
 }
 
 function* login(action) {
@@ -19,7 +19,7 @@ function* login(action) {
     const User = yield call(loginAPI, action.data);
     yield put({
       type: LOGIN_SUCCESS,
-      data: User
+      data: User.data
     });
   } catch (e) {
     console.error(e);
@@ -35,6 +35,7 @@ function* watchLogin() {
 }
 
 function signUpAPI(data) {
+  console.log(data);
   return axios.post("/auth/register", data);
 }
 
@@ -59,5 +60,5 @@ function* watchSignUp() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogin)]);
+  yield all([fork(watchLogin), fork(watchSignUp)]);
 }

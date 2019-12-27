@@ -8,7 +8,7 @@ import StackNavigator from "../navigators/StackNavigator";
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Map: StackNavigator,
+    Map: MapScreen,
     Help: HelpScreen
   },
   {
