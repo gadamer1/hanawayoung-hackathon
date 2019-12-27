@@ -11,7 +11,6 @@ const ToiletDetailScreen = props => {
 
   useEffect(() => {
     if (isPostingSuccess) {
-      console.log(toilet);
       props.navigation.pop();
     }
   }, [isPostingSuccess]);
@@ -29,6 +28,7 @@ const ToiletDetailScreen = props => {
           rating
         }
       });
+      console.log(toilet);
     } else {
       alert("텍스트를 입력해주세요!");
     }
@@ -41,7 +41,9 @@ const ToiletDetailScreen = props => {
   return (
     <View>
       <Text>{toilet.description}</Text>
-      <Text>{toilet.name}</Text>
+      <Text>{toilet.writer}</Text>
+      <Text>{toilet.rating}</Text>
+
       {toilet.reviews.map(v => {
         return <Text>{v.content}</Text>;
       })}
