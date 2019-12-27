@@ -22,7 +22,6 @@ const HelpScreen = props => {
 
   useEffect(() => {
     if (user && first) {
-      console.log(user);
       setFirst(false);
       const registerForPushNotificationAsync = async () => {
         const { status } = await Permissions.askAsync(
@@ -43,7 +42,6 @@ const HelpScreen = props => {
             name: "fuck"
           }
         };
-        console.log(token);
 
         return await axios.put(
           `http://54.180.101.221:4000/users/${user.user._id}/token`,
@@ -71,9 +69,9 @@ const HelpScreen = props => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Help />
-      {notification && notification.data && (
-        <Receive data={notification.data} />
-      )}
+      <View style={{ flex: 1 }}>
+        {notification.data && <Receive data={notification.data} />}
+      </View>
     </View>
   );
 };

@@ -12,6 +12,7 @@ const Receive = props => {
 
   return (
     <MapView
+      style={{ flex: 1 }}
       initialRegion={{
         latitude: location.latitude,
         longitude: location.longitude,
