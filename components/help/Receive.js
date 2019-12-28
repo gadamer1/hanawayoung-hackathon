@@ -19,11 +19,14 @@ const Receive = props => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
       }}
+      showsUserLocation
     >
       <Marker
+        image={require("../../assets/triangle.png")}
+        style={{ width: 40, height: 40 }}
         coordinate={{
-          longitude: props.data.location[0],
-          latitude: props.data.location[0]
+          latitude: props.data.location[1],
+          longitude: props.data.location[0]
         }}
       />
     </MapView>

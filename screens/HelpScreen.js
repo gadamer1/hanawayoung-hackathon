@@ -49,7 +49,6 @@ const HelpScreen = props => {
         );
       };
       registerForPushNotificationAsync();
-      console.log("hi");
       setNotificationSubscription(
         Notifications.addListener(handleNotification)
       );

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, AsyncStorage } from "react-redux";
-import { TextButton, RaisedTextButton } from 'react-native-material-buttons';
+import { TextButton, RaisedTextButton } from "react-native-material-buttons";
 import { Button, Input, Icon, Image } from "react-native-elements";
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
-  ToolbarAndroidComponent,
-
+  ToolbarAndroidComponent
 } from "react-native";
 import { LOGIN_REQUEST } from "../../reducers/user/actions";
 
@@ -70,16 +69,10 @@ export default function App(props) {
       <Image
         source={require("../../assets/cleantoilet.jpg")}
         style={{ width: 200, height: 200 }}
-
       />
       <View style={{ height: 20 }}></View>
       <View style={styles.SectionStyle}>
-        <Icon
-          size='33'
-          name='user'
-          type='font-awesome'
-          color='#000'
-        />
+        <Icon size={33} name="user" type="font-awesome" color="#000" />
         <TextInput
           style={styles.input}
           value={id}
@@ -88,14 +81,8 @@ export default function App(props) {
         />
       </View>
       <View style={styles.SectionStyle}>
-        <Icon
-          size='33'
-          name='lock'
-          type='font-awesome'
-          color='#000'
-        />
+        <Icon size={33} name="lock" type="font-awesome" color="#000" />
         <TextInput
-
           style={styles.input}
           value={password}
           onChange={_onChangePassword}
@@ -105,13 +92,12 @@ export default function App(props) {
       <View style={{ height: 20 }}></View>
 
       <TextButton
-
         type="clear"
         style={styles.buttonStyle}
         onPress={_onPressLoginButton}
         title="Login"
         loading={isLoging}
-        fontFamily='Helvetica'
+        fontFamily="Helvetica"
       ></TextButton>
       <TextButton
         type="clear"
@@ -145,10 +131,10 @@ const styles = StyleSheet.create({
     width: 370
   },
   SectionStyle: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 2,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 2
   },
 
   img: {

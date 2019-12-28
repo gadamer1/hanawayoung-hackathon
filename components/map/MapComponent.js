@@ -10,13 +10,14 @@ import {
 import { SET_CURRENT_LOCATION } from "../../reducers/user/actions";
 import MarkerComponent from "./MarkerComponent";
 import Toilet from "./Toilet";
+import axios from "axios";
 
 const MapComponent = props => {
   const dispatch = useDispatch();
+  const { user, location } = useSelector(state => state.user);
   const { toilet, toilets, isPostingSuccess } = useSelector(
     state => state.toilet
   );
-  const { location } = useSelector(state => state.user);
 
   //clean up isPostReviewSuccess
   useEffect(() => {
@@ -37,8 +38,20 @@ const MapComponent = props => {
         type: GET_TOILETS_REQUEST,
         data: location
       });
+
+      const datas = {
+        x_wgs84: location.longitude,
+        y_wgs84: location.latitude
+      };
+      console.log(user);
+      if (user) {
+        axios.put(
+          `http://54.180.101.221:4000/users/${user.user._id}/location`,
+          datas
+        );
+      }
     }
-  }, [location]);
+  }, [location, user]);
   const _onChangeRegion = region => {
     dispatch({
       type: SET_CURRENT_LOCATION,

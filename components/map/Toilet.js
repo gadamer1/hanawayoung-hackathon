@@ -20,14 +20,9 @@ const Toilet = props => {
 
   if (toilet) {
     return (
-      <TouchableOpacity style={{ flex: 1 }} onPress={_onPressToilet}>
+      <TouchableOpacity style={{ height: 100 }} onPress={_onPressToilet}>
         <Overlay style={{ flex: 1 }}>
-          {toilet.images ? (
-            <Image styleName="medium-wide" source={{ uri: toilet.images[0] }} />
-          ) : (
-            <Image styleName="medium-wide" />
-          )}
-          <View styleName="content">
+          <View styleName="content" style={{ flex: 1 }}>
             <Subtitle>{toilet.name}</Subtitle>
             <Caption>{toilet.description}</Caption>
           </View>

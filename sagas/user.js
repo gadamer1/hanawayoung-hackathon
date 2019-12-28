@@ -35,7 +35,6 @@ function* watchLogin() {
 }
 
 function signUpAPI(data) {
-  console.log(data);
   return axios.post("/auth/register", data);
 }
 
@@ -44,7 +43,7 @@ function* signUp(action) {
     const User = yield call(signUpAPI, action.data);
     yield put({
       type: SIGN_UP_SUCCESS, // put == dispatch
-      data: User
+      data: User.data
     });
   } catch (e) {
     console.error(e);

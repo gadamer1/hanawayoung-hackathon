@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { View } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { View, TextInput, StyleSheet } from "react-native";
+import { Button, Text, Icon } from "react-native-elements";
 import axios from "axios";
 const Help = props => {
-  const [detail, setDetail] = useState("1s");
+  const [detail, setDetail] = useState("");
   const { location } = useSelector(state => state.user);
   const _onPressButton = () => {
     if (detail.trim() === "") {
@@ -21,14 +21,54 @@ const Help = props => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Input
-        style={{ height: 300, borderColor: "gray", borderWidth: 1 }}
-        value={detail}
-        onChangeText={text => setDetail(text)}
-      />
-      <Button title="전송" onPress={_onPressButton} />
+      <Text style={{ fontSize: 30 }}>도와주세요!</Text>
+      <Text>주위 사람들에게 도움을 요청합니다</Text>
+      <View style={styles.SectionStyle}>
+        <Icon size={33} name="heart-outlined" type="entypo" color="#000" />
+        <TextInput
+          style={styles.input}
+          value={detail}
+          onChangeText={text => setDetail(text)}
+          placeholder="도움을 받고싶습니다"
+        />
+      </View>
+      <Button title="help 요청" type="outline" onPress={_onPressButton} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  input: {
+    marginLeft: 13,
+    width: 335,
+    marginTop: 20,
+    fontSize: 20,
+    paddingBottom: 3
+  },
+  buttonStyle: {
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 100,
+    marginTop: 20,
+    width: 370
+  },
+  SectionStyle: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 2
+  },
+
+  img: {
+    width: 50,
+    height: 50
+  }
+});
 
 export default Help;
