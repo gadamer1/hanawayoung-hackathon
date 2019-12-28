@@ -36,7 +36,6 @@ const ToiletDetailScreen = props => {
   };
 
   const _onChangeContent = e => {
-    console.log(toilet);
     setContent(e.nativeEvent.text);
   };
 
@@ -50,7 +49,7 @@ const ToiletDetailScreen = props => {
       <View style={{ alignItems: "flex-start", justifyContent: "center" }}>
         {toilet.reviews.map(v => {
           return (
-            <View style={{ paddingBottom: 30 }}>
+            <View key={`${v}`} style={{ paddingBottom: 30 }}>
               <Text style={{ fontSize: 20 }}>
                 유저이름 : {v.writer.nickname}
               </Text>

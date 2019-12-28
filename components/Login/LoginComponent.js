@@ -22,13 +22,6 @@ export default function App(props) {
 
   useEffect(() => {
     if (isLoginSuccess) {
-      const setUser = async () => {
-        try {
-          await AsyncStorage.setItem("user", user);
-        } catch (e) {
-          console.error(e);
-        }
-      };
       props.navi.navigation.replace("Map");
     }
   }, [isLoginSuccess]);
