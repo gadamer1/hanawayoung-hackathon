@@ -21,6 +21,8 @@ const MarkerComponent = props => {
         toilets.map((v, index) => {
           return (
             <Marker
+              image={require("../../assets/toilet-.png")}
+              style={{ width: 40, height: 40 }}
               key={`${JSON.stringify(v)}`}
               onPress={() => {
                 _onPressMarker(v);

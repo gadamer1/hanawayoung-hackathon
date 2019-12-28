@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { View, Text } from "react-native";
-import { Input, Button } from "react-native-elements";
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import { Input, Button, Image } from "react-native-elements";
 import { SIGN_UP_REQUEST } from "../reducers/user/actions";
+import { TextButton, RaisedTextButton } from 'react-native-material-buttons';
 
 const SignUpScreen = props => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const SignUpScreen = props => {
 
   useEffect(() => {
     if (isSignUpSuccess) {
-      props.navigation.navigate("Map");
+      props.navigation.replace("Map");
     }
   }, [isSignUpSuccess]);
 
@@ -38,35 +39,99 @@ const SignUpScreen = props => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Input
-        placeholder="닉네임 입력해주세요"
+      <Text style={styles.textStyle}>닉네임</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="영문만 입력 가능"
         value={nickname}
         onChangeText={text => {
           setNickname(text);
         }}
       />
-      <Input
-        placeholder="아이디 입력해주세요"
+      <Text style={styles.textStyle}>아이디</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="영문만 입력 가능"
         value={loginId}
         onChangeText={text => {
           setLoginId(text);
         }}
       />
-      <Input
-        placeholder="비밀번호 입력해주세요"
+      <Text style={styles.textStyle}>비밀번호</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="영문만 입력 가능"
         value={password}
         onChangeText={text => {
           setPassword(text);
         }}
       />
+      <View style={styles.container}>
+        <TextButton
+          type="clear"
 
-      <Button
-        title="전송"
-        onPress={_onPressSignUpButton}
-        loading={isSignUping}
-      />
+          style={styles.buttonStyle}
+          title="가입완료"
+          onPress={_onPressSignUpButton}
+          loading={isSignUping}
+        />
+
+
+      </View>
+      <View style={styles.container}>
+        <Image
+          source={require("../assets/cleantoilet.jpg")}
+          style={{ marginBottom: 100, width: 100, height: 100 }}
+
+        />
+      </View>
     </View>
   );
 };
 
 export default SignUpScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+
+  },
+  textStyle: {
+
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginLeft: 30
+  },
+  input: {
+    marginLeft: 17,
+    width: 380,
+
+    fontSize: 17,
+    paddingBottom: 3,
+    borderColor: "lightgray",
+    borderRadius: 60,
+    borderWidth: 1,
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
+    marginBottom: 20,
+    marginTop: 10,
+
+  },
+  buttonStyle: {
+
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 60,
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: 380
+  }
+
+
+});

@@ -9,9 +9,8 @@ import TabNavigator from "./TabNavigator";
 const StackNavigator = createStackNavigator({
   Home: HomeScreen,
   SignUp: SignUpScreen,
-  Map: MapScreen,
   ToiletDetail: ToiletDetailScreen,
-  TabNavigator: TabNavigator
+  Map: TabNavigator
 });
 
 export default createAppContainer(StackNavigator);
