@@ -10,27 +10,32 @@ const Receive = props => {
 
   const { location } = useSelector(state => state.user);
 
-  return (
-    <MapView
-      style={{ flex: 1 }}
-      initialRegion={{
-        latitude: location.latitude,
-        longitude: location.longitude,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01
-      }}
-      showsUserLocation
-    >
-      <Marker
-        image={require("../../assets/triangle.png")}
-        style={{ width: 40, height: 40 }}
-        coordinate={{
-          latitude: props.data.location[1],
-          longitude: props.data.location[0]
-        }}
-      />
-    </MapView>
-  );
+  if (props.data) {
+    return (
+      <View style={{ width: 500, height: 500 }}>
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+          }}
+          showsUserLocation
+        >
+          <Marker
+            image={require("../../assets/triangle.png")}
+            style={{ width: 40, height: 40 }}
+            coordinate={{
+              latitude: props.data.location[1],
+              longitude: props.data.location[0]
+            }}
+          />
+        </MapView>
+      </View>
+    );
+  }
+  return <View></View>;
 };
 
 export default Receive;

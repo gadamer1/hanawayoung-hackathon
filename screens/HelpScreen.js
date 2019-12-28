@@ -56,10 +56,6 @@ const HelpScreen = props => {
   }, [user]);
 
   // 헬프를 받았을 때
-  useEffect(() => {
-    if (notification && notification.data) {
-    }
-  }, [notification]);
 
   const handleNotification = notification => {
     setNotification(notification);
@@ -68,9 +64,7 @@ const HelpScreen = props => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Help />
-      <View style={{ flex: 1 }}>
-        {notification.data && <Receive data={notification.data} />}
-      </View>
+      {notification.data && <Receive data={notification.data} />}
     </View>
   );
 };
